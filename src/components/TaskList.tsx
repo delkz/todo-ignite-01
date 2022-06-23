@@ -26,7 +26,7 @@ export function TaskList() {
         title: newTaskTitle,
         isComplete: false
       }
-
+      setNewTaskTitle('');
       setTasks([...tasks,task]);
     }
   }
@@ -37,6 +37,13 @@ export function TaskList() {
 
   function handleRemoveTask(id: number) {
     // Remova uma task da listagem pelo ID
+    let tempTasks:Task[] = [...tasks];
+    for (var i in tasks) {
+      if (tasks[i].id === id) {
+        delete tempTasks[i];
+      }
+    }
+    setTasks(tempTasks.filter(function( element ) {return element !== undefined;}));
   }
 
   return (
